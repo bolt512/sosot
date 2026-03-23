@@ -29,6 +29,10 @@ class Settings:
     # History
     max_history: int
 
+    # Webhook
+    webhook_port: int
+    webhook_token: str
+
     @classmethod
     def from_env(cls) -> "Settings":
         load_dotenv()
@@ -43,8 +47,10 @@ class Settings:
             embedding_model=os.getenv("EMBEDDING_MODEL", "nomic-embed-text"),
             db_path=os.getenv("DB_PATH", "./vector_db"),
             data_path=os.getenv("DATA_PATH", "./data"),
-            chunk_size=int(os.getenv("CHUNK_SIZE", "500")),
-            chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "50")),
+            chunk_size=int(os.getenv("CHUNK_SIZE", "1500")),
+            chunk_overlap=int(os.getenv("CHUNK_OVERLAP", "100")),
             retriever_k=int(os.getenv("RETRIEVER_K", "3")),
             max_history=int(os.getenv("MAX_HISTORY", "10")),
+            webhook_port=int(os.getenv("WEBHOOK_PORT", "8000")),
+            webhook_token=os.getenv("WEBHOOK_TOKEN", ""),
         )

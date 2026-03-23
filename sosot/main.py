@@ -1,6 +1,8 @@
 import logging
 import sys
 
+import uvicorn
+
 from config.settings import Settings
 from bot.health import run_health_checks
 from bot.handler import MattermostBot
@@ -26,7 +28,9 @@ def main():
 
     logger.info("봇 시작 중...")
     bot = MattermostBot(settings)
-    bot.start()
+    bot.login()
+    app = bot.create_app()
+    uvicorn.run(app, host="0.0.0.0", port=settings.webhook_port)
 
 
 if __name__ == "__main__":

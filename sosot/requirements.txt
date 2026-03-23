@@ -8,5 +8,7 @@ chromadb
 pypdf
 python-dotenv
 requests
+fastapi
+uvicorn
 pytest
 unstructured
